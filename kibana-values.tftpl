@@ -1,0 +1,14 @@
+ingress:
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: basic-auth
+    nginx.ingress.kubernetes.io/auth-realm: 'Enter your Kibana credentials'
+  hosts:
+    - host: ${kibana_hostname}
+      paths:
+        - path: /
+  tls:
+    - secretName: ${secret_name}
+      hosts:
+        - ${kibana_hostname}
