@@ -63,6 +63,6 @@ resource "kubernetes_secret" "basic_auth_secret" {
     name = "basic-auth"
   }
   data = {
-    "auth" : "elastic:${bcrypt(random_password.basic_auth_password.result)}"
+    "auth" : "${var.username}:${bcrypt(random_password.basic_auth_password.result)}"
   }
 }

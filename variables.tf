@@ -80,3 +80,9 @@ variable private_key {
     description = "Name of your private key in K8S"
     default = "my-certificate-tls"
 }
+
+variable username {
+    type = string
+    description = "Username for Elastic and Kibana to login"
+    default = "elastic"
+}
