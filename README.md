@@ -7,4 +7,4 @@ These TF files will create a LKE cluster and will use Helm to install all the re
 
 By default an "elastic" user will be created used for both elastic and kibana with a random generated password. Password can be retrieved via a ```terraform output -json```.
 
-We also need to apply some changes to Elastic itself via an API call, something to do in a next version.
+We now also added some Elastic configuration using TF. It will create an index and set a ingest pipeline to "wash" datastream input
