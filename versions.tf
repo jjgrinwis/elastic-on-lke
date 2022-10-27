@@ -2,7 +2,7 @@
 terraform {
   required_providers {
     linode = {
-      source  = "linode/linode"
+      source = "linode/linode"
     }
     kubectl = {
       source  = "gavinbunney/kubectl"
@@ -18,6 +18,9 @@ terraform {
     }
     akamai = {
       source = "akamai/akamai"
+    }
+    elasticstack = {
+      source = "elastic/elasticstack"
     }
   }
   required_version = ">= 0.14"
