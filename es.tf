@@ -17,7 +17,7 @@ resource "helm_release" "elasticsearch" {
   # let's use some local values file to enable our ingress controller
   # ingress controller will also enable basic auth with bcrypt password stored in kubernetes
   values = [
-    "${file("es-values.yaml")}"
+    "${file("${path.module}/values/es-values.yaml")}"
   ]
 
   # below some set examples. 

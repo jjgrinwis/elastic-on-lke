@@ -32,6 +32,7 @@ variable "label" {
 variable "tags" {
   type        = set(string)
   description = "List of unique tages assigned to the k8s cluster."
+  default     = ["akamai_datastream", "elastic", "kibana"]
 }
 
 variable "pool_count" {

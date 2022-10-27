@@ -20,5 +20,5 @@ resource "helm_release" "kibana" {
   # let's use some local values file to enable our ingress controller
   # ingress controller will also enable basic auth with bcrypt password stored in kubernetes
   # > templatefile("${path.module}/backends.tftpl", { port = 8080, ip_addrs = ["10.0.0.1", "10.0.0.2"] })
-  values = [ templatefile("${path.module}/kibana-values.tftpl", { secret_name = var.private_key, kibana_hostname = var.kibana_hostname })]
+  values = [templatefile("${path.module}/values/kibana-values.tftpl", { secret_name = var.private_key, kibana_hostname = var.kibana_hostname })]
 }
