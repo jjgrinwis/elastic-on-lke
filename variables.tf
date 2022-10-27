@@ -90,12 +90,12 @@ variable "username" {
 
 variable "index_name" {
   type        = string
-  description = "The Elastic Index where datastream is going to store it's logs"
+  description = "The Elastic index where datastream is going to store it's logs"
   default     = "ds"
 }
 
 variable "ingest_pipeline" {
   type        = string
-  description = "Name of the Elastic ingest pipeline for datastream"
+  description = "Name of the Elastic ingest pipeline attached to the Elastic datastream index"
   default     = "dswm"
 }

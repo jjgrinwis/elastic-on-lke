@@ -1,9 +1,9 @@
 # a test with the elastic terraform provider
 provider "elasticstack" {
   elasticsearch {
-    username  = "elastic"
+    username  = var.username
     password  = resource.random_password.basic_auth_password.result
-    endpoints = ["https:${var.es-hostname}"]
+    endpoints = ["https://${var.es_hostname}"]
   }
 }
 
