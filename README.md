@@ -10,4 +10,5 @@ By default an "elastic" user will be created used for both elastic and kibana wi
 [27102022] We now also added some Elastic configuration using TF. It will create an index and set a ingest pipeline to "wash" the datastream input.
 
 I created a datastream config by hand but we should also be able to automate it using the DataStream Akamai TF provider.
+<img width="1248" alt="image" src="https://user-images.githubusercontent.com/3455889/202760826-81930bdb-2129-4711-b36a-602c28c1b88a.png">
 
