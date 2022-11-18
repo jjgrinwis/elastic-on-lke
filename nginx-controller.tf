@@ -3,13 +3,16 @@
 
 # helm charts can be found at: https://artifacthub.io/
 # Let's use the offical nginx ingress from:
-# https://artifacthub.io/packages/helm/nginx/nginx-ingress
+# https://artifacthub.io/packages/helm/bitnami/nginx-ingress-controller
 resource "helm_release" "nginx_ingress" {
-  name       = "nginx-ingress-controller"
+  name = "nginx-ingress-controller"
 
   # using bitnami for our helm repo
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "nginx-ingress-controller"
+
+  # tested with this specific version
+  version = "9.3.18"
 
   # use type loadbalancer to linode nodebalancer is automatically created
   set {
@@ -17,7 +20,7 @@ resource "helm_release" "nginx_ingress" {
     value = "LoadBalancer"
   }
 
-  depends_on = [ resource.time_sleep.wait_60_seconds ]
+  depends_on = [resource.time_sleep.wait_xx_seconds]
 }
 
 locals {
@@ -27,7 +30,7 @@ locals {
 }
 
 resource "time_sleep" "wait_30_seconds" {
-  depends_on = [resource.helm_release.nginx_ingress]
+  depends_on      = [resource.helm_release.nginx_ingress]
   create_duration = "30s"
 }
 
@@ -42,10 +45,12 @@ data "kubernetes_service" "nginx_ingress" {
 }
 
 # now lookup ingress ip address we're going that to setup our DNS A record
+# cluster should be active so create a depends_on
 data "kubernetes_ingress_v1" "example" {
   metadata {
     name = "terraform-example"
   }
+  depends_on = [resource.linode_lke_cluster.my-cluster]
 }
 
 # specific the correct EdgeDNS credentials
@@ -58,20 +63,20 @@ provider "akamai" {
 # let's start with our elasticsearch hostname
 # using some regex the strip first part to create domainname
 resource "akamai_dns_record" "es-hostname" {
-    zone = regex("([\\w-]*)\\.([\\w-\\.]*)",var.es_hostname)[1]
-    name = var.es_hostname
-    recordtype =  "A"
-    active = true
-    ttl =  30
-    target = [local.ingress_ip]
+  zone       = regex("([\\w-]*)\\.([\\w-\\.]*)", var.es_hostname)[1]
+  name       = var.es_hostname
+  recordtype = "A"
+  active     = true
+  ttl        = 30
+  target     = [local.ingress_ip]
 }
 
 # when we have our external IP, let's add some A records to EdgeDNS
 resource "akamai_dns_record" "kibana-hostname" {
-    zone = regex("([\\w-]*)\\.([\\w-\\.]*)",var.kibana_hostname)[1]
-    name = var.kibana_hostname
-    recordtype =  "A"
-    active = true
-    ttl =  30
-    target = [local.ingress_ip]
+  zone       = regex("([\\w-]*)\\.([\\w-\\.]*)", var.kibana_hostname)[1]
+  name       = var.kibana_hostname
+  recordtype = "A"
+  active     = true
+  ttl        = 30
+  target     = [local.ingress_ip]
 }

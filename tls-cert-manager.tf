@@ -13,8 +13,8 @@ module "cert_manager" {
   cluster_issuer_private_key_secret_name = var.private_key
 
   # for whatever reason we can't run two helm installation at the same time
-  # so let's wait for nginx to finish. 
-  depends_on = [resource.helm_release.nginx_ingress]
+  # so let's wait for 30 seconds after nginx has finished.
+  depends_on = [resource.time_sleep.wait_30_seconds]
 
   # now let's request a cert, this will automatically create an ingress line in cert-manager namespace by default
   # as the private key is stored in default na

@@ -30,6 +30,8 @@ locals {
 }
 
 # let's create our lke resource
+# sit back and relax, this could take around 10 minutes!
+# but if for whatever reason it's not working, just kill the TF script and delete created linode via portal or cli
 resource "linode_lke_cluster" "my-cluster" {
   label       = var.label
   k8s_version = var.k8s_version
@@ -57,8 +59,9 @@ resource "local_sensitive_file" "kubeconfig" {
 }
 
 # during testing looks like helm is already trying to create stuff but LKE is not fully finished
-# so let's wait for 60 seconds before continuing installing the software.
-resource "time_sleep" "wait_60_seconds" {
+# so let's wait for 120 seconds before continuing installing the software.
+# we might want to look for some other option to check if LKE if fully up and running
+resource "time_sleep" "wait_xx_seconds" {
   depends_on      = [resource.local_sensitive_file.kubeconfig]
   create_duration = "60s"
 }

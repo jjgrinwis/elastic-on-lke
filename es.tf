@@ -1,5 +1,6 @@
 # now we're going to install elastic
 # we can't use Elastic on K8S as we need a license for it.
+# https://artifacthub.io/packages/helm/elastic/elasticsearch
 resource "helm_release" "elasticsearch" {
   name = "elasticsearch"
 
@@ -7,9 +8,12 @@ resource "helm_release" "elasticsearch" {
   repository = "https://helm.elastic.co"
   chart      = "elasticsearch"
 
+  # using our tested version, some issues with the latest version
+  version = "7.17.3"
+
   # as we can't install two packages at the same time via helm
-  # let's wait a minutes
-  depends_on = [resource.time_sleep.wait_60_seconds]
+  # so let's wait until nginx controller and cert_manager have been installed
+  depends_on = [resource.helm_release.nginx_ingress, resource.akamai_dns_record.kibana-hostname, module.cert_manager]
 
   # now let's some helm specific vars that will be used during the installation
   # https://artifacthub.io/packages/helm/elastic/elasticsearch?modal=values

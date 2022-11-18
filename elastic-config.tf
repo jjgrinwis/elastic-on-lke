@@ -31,6 +31,11 @@ resource "elasticstack_elasticsearch_ingest_pipeline" "my_ingest_pipeline" {
         ignore_failure = true
       }
   })]
+
+  # we can only start elastic config when elastic has been installed
+  # and make sure hostname is still availble when deleting this resource
+  # '$ terraform state rm elasticstack_elasticsearch_ingest_pipeline.my_ingest_pipeline'
+  depends_on = [resource.helm_release.elasticsearch, akamai_dns_record.es-hostname, kubernetes_secret.basic_auth_secret]
 }
 
 # create our index with a default ingest pipeline attached to it.
@@ -48,5 +53,6 @@ resource "elasticstack_elasticsearch_index" "my_index" {
   })
 
   default_pipeline = resource.elasticstack_elasticsearch_ingest_pipeline.my_ingest_pipeline.name
+
 }
 
