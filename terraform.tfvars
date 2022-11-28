@@ -16,8 +16,9 @@ tags = ["kibana", "elastic", "demo"]
 # number of nodes in our cluster
 pool_count = 3
 
-# our test user
-issuer_email = "john@grinwis.com"
+# ACME issuer email address, should be a valid one.
+# letsencrypt will ignore request if using example.com!
+issuer_email = "test@example.com"
 
 # elasticsearch hostname
 es_hostname = "elas.great-demo.com"
