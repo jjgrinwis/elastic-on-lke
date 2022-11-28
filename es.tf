@@ -8,8 +8,9 @@ resource "helm_release" "elasticsearch" {
   repository = "https://helm.elastic.co"
   chart      = "elasticsearch"
 
-  # using our tested version, some issues with the latest version
-  version = "7.17.3"
+  # specif the specific version of our helm chart
+  # https://artifacthub.io/packages/helm/elastic/elasticsearch
+  version = "8.5.1"
 
   # as we can't install two packages at the same time via helm
   # so let's wait until nginx controller and cert_manager have been installed
@@ -51,13 +52,20 @@ resource "helm_release" "elasticsearch" {
 }
 
 # first create a random password resource user for basic authentication
-resource "random_password" "basic_auth_password" {
+/* resource "random_password" "basic_auth_password" {
   length           = 16
   special          = true
   override_special = "_@"
-}
+} */
 
-# store that password as bcrypt password for user elastic in kubernetes
+# we're using the "elastic" user that is automatically created
+# check password via: 
+# 1. Retrieve the elastic user's password.
+#  $ kubectl get secrets --namespace=default elasticsearch-master-credentials -ojsonpath='{.data.password}' | base64 -d
+# 2. Retrieve the kibana service account token.
+# $ kubectl get secrets --namespace=default kibana-kibana-es-token -ojsonpath='{.data.token}' | base64 -d
+
+/* # store that password as bcrypt password for user elastic in kubernetes
 # bcrypt is used by htpasswd which nginx is using for basic auth
 # https://itnext.io/adding-basic-auth-to-ingress-nginx-using-terraform-c9c09f857378
 # type=Opaque for arbitrary data
@@ -69,4 +77,4 @@ resource "kubernetes_secret" "basic_auth_secret" {
   data = {
     "auth" : "${var.username}:${bcrypt(random_password.basic_auth_password.result)}"
   }
-}
+} */

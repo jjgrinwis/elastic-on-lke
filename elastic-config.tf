@@ -1,8 +1,25 @@
+# lookup our dynamically created elastic password
+# it's just plain text so we might conserding using vault
+# we assigned it the sensitive value so not shown in output
+data "kubernetes_secret_v1" "elastic_user" {
+  metadata {
+    name      = "elasticsearch-master-credentials"
+    namespace = "default"
+  }
+  depends_on = [
+    helm_release.elasticsearch
+  ]
+}
+
 # a test with the elastic terraform provider
+# user is by default elastic user
+# I've seen a couple of situation where the password changed so you get an auth error
+# just check the output password value and use it in the password field. 
+# not sure what is changing the password, need to find that out.
 provider "elasticstack" {
   elasticsearch {
-    username  = var.username
-    password  = resource.random_password.basic_auth_password.result
+    username  = "elastic"
+    password  = data.kubernetes_secret_v1.elastic_user.data.password
     endpoints = ["https://${var.es_hostname}"]
   }
 }
@@ -35,7 +52,7 @@ resource "elasticstack_elasticsearch_ingest_pipeline" "my_ingest_pipeline" {
   # we can only start elastic config when elastic has been installed
   # and make sure hostname is still availble when deleting this resource
   # '$ terraform state rm elasticstack_elasticsearch_ingest_pipeline.my_ingest_pipeline'
-  depends_on = [resource.helm_release.elasticsearch, akamai_dns_record.es-hostname, kubernetes_secret.basic_auth_secret]
+  depends_on = [resource.helm_release.elasticsearch, akamai_dns_record.es-hostname]
 }
 
 # create our index with a default ingest pipeline attached to it.
@@ -44,15 +61,16 @@ resource "elasticstack_elasticsearch_ingest_pipeline" "my_ingest_pipeline" {
 resource "elasticstack_elasticsearch_index" "my_index" {
   name = var.index_name
 
-  mappings = jsonencode({
+  mappings = file("${path.module}/values/mappings.json")
+  /* mappings = jsonencode({
     properties = {
       geoip = { properties = {
         location = { type = "geo_point", index = false }
       } }
     }
-  })
+  }) */
 
   default_pipeline = resource.elasticstack_elasticsearch_ingest_pipeline.my_ingest_pipeline.name
-
 }
+
 

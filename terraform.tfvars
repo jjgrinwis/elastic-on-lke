@@ -3,9 +3,11 @@
 k8s_version = "1.23"
 
 # region for our k8s cluster
+# linode-cli regions list --json
 region = "eu-central"
 
-# name of our cluster
+# name of the LKE cluster. Kubeconfig will have the same name in ~/.kube dir
+# beware, a terraform destroy won't delete the PVC's (volumes)
 label = "customer-demo"
 
 # tags assigned to our cluster
@@ -18,7 +20,7 @@ pool_count = 3
 issuer_email = "john@grinwis.com"
 
 # elasticsearch hostname
-es_hostname = "es.great-demo.com"
+es_hostname = "elas.great-demo.com"
 
 #kibana hostname
 kibana_hostname = "kiba.great-demo.com"

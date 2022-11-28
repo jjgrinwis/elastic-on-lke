@@ -63,5 +63,5 @@ resource "local_sensitive_file" "kubeconfig" {
 # we might want to look for some other option to check if LKE if fully up and running
 resource "time_sleep" "wait_xx_seconds" {
   depends_on      = [resource.local_sensitive_file.kubeconfig]
-  create_duration = "60s"
+  create_duration = "120s"
 }

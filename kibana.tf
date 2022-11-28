@@ -3,14 +3,15 @@
 # username: elastic
 # password: 'terraform output -json'
 
-# https://artifacthub.io/packages/helm/elastic/kibana/7.17.3
+# https://artifacthub.io/packages/helm/elastic/kibana
+# specifing specific package we're going to use
 resource "helm_release" "kibana" {
   name = "kibana"
 
   # using elastic as our helm resource
   repository = "https://helm.elastic.co"
   chart      = "kibana"
-  version    = "7.17.3"
+  version    = "8.5.1"
 
   # looks like we can't install multiple packages at the same time
   # let's wait until the elastic installation has finished.
