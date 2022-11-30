@@ -8,20 +8,20 @@ region = "eu-central"
 
 # name of the LKE cluster. Kubeconfig will have the same name in ~/.kube dir
 # beware, a terraform destroy won't delete the PVC's (volumes)
-label = "customer-demo"
+label = "internal-demo"
 
 # tags assigned to our cluster
-tags = ["kibana", "elastic", "demo"]
+tags = ["kibana", "elastic", "amsterdam"]
 
 # number of nodes in our cluster
 pool_count = 3
 
 # ACME issuer email address, should be a valid one.
 # letsencrypt will ignore request if using example.com!
-issuer_email = "test@example.com"
+issuer_email = "acme@example.com"
 
 # elasticsearch hostname
-es_hostname = "elas.great-demo.com"
+es_hostname = "es.great-demo.com"
 
-#kibana hostname
+# kibana hostname
 kibana_hostname = "kiba.great-demo.com"
