@@ -7,7 +7,7 @@ These TF files will create a LKE cluster and will use Helm to install all the re
 
 By default an "elastic" user will be created used for both elastic and kibana with a random generated password. Password can be retrieved via a ```terraform output -json```.
 
-If anything goes wrong with the certificate request via cert-manager, double check the DNS and make sure you are using a valid email address.
+If anything goes wrong with the certificate request via cert-manager, double check the DNS and make sure you are using a valid issuer email address.
 ```
 $ kubectl apply -f https://k8s.io/examples/admin/dns/dnsutils.yaml --kubeconfig ~/.kube/kube_config
 $ kubectl get pods dnsutils --kubeconfig ~/.kube/kube_config
