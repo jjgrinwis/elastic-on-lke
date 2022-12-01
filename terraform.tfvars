@@ -18,7 +18,7 @@ pool_count = 3
 
 # ACME issuer email address, should be a valid one.
 # letsencrypt will ignore request if using example.com!
-issuer_email = "acme@example.com"
+# issuer_email = 
 
 # elasticsearch hostname
 es_hostname = "es.great-demo.com"

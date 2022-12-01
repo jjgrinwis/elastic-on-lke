@@ -54,8 +54,7 @@ variable "node_type" {
 
 variable "issuer_email" {
   type        = string
-  description = "Email address of issuer of DV cert, should be valid email address."
-  default     = "somebody@example.com"
+  description = "Email address of issuer of the DV cert. This should be valid email address otherwise cert request will fail!"
 }
 
 variable "issuer_name" {
