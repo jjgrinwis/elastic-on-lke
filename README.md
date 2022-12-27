@@ -20,7 +20,7 @@ Address:	10.128.0.10#53
 ```
 You might need to flush DNS in your cluster to get correct DNS answer.
 
-[27102022] We now also added some Elastic configuration using TF. It will create an index and set a ingest pipeline to "wash" the datastream input.
+We now also added some Elastic configuration using TF. It will create an index and set a ingest pipeline to "wash" the datastream input. We also added some mapping config but only for non-text field as Elastic will automatically convert datastream fields to text as datastream.
 
 I created a datastream config by hand but we should also be able to automate it using the DataStream Akamai TF provider.
 <img width="1248" alt="image" src="https://user-images.githubusercontent.com/3455889/202760826-81930bdb-2129-4711-b36a-602c28c1b88a.png">
