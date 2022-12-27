@@ -22,7 +22,7 @@ provider "elasticstack" {
     password  = data.kubernetes_secret_v1.elastic_user.data.password
     endpoints = ["https://${var.es_hostname}"]
 
-    # if something goes wrong with the certificate still create this config
+    # if something goes wrong with the certificate request still create this config
     insecure = true
   }
 }

@@ -1,6 +1,6 @@
 # Kubernets version to use
 # used "linode-cli lke versions-list" to get the available versions
-k8s_version = "1.23"
+k8s_version = "1.24"
 
 # region for our k8s cluster
 # linode-cli regions list --json
@@ -8,7 +8,7 @@ region = "eu-central"
 
 # name of the LKE cluster. Kubeconfig will have the same name in ~/.kube dir
 # beware, a terraform destroy won't delete the PVC's (volumes)
-label = "internal-demo"
+label = "grinwis-demo"
 
 # tags assigned to our cluster
 tags = ["kibana", "elastic", "amsterdam"]
@@ -24,4 +24,4 @@ pool_count = 3
 es_hostname = "es.great-demo.com"
 
 # kibana hostname
-kibana_hostname = "kiba.great-demo.com"
+kibana_hostname = "kibana.great-demo.com"

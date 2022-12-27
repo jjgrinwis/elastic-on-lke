@@ -7,24 +7,6 @@
                 }
             }
         },
-        "UA": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 512
-                }
-            }
-        },
-        "accLang": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
         "billingRegion": {
             "type": "byte",
             "ignore_malformed": true,
@@ -55,15 +37,6 @@
                 }
             }
         },
-        "city": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
         "cliIP": {
             "type": "ip",
             "ignore_malformed": true,
@@ -74,44 +47,9 @@
                 }
             }
         },
-        "cookie": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 4096
-                }
-            }
-        },
-        "country": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "cp": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "customField": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
         "dnsLookupTimeMSec": {
             "type": "integer",
+            "ignore_malformed": true,
             "fields": {
                 "keyword": {
                     "type": "keyword",
@@ -126,33 +64,6 @@
                 "keyword": {
                     "type": "keyword",
                     "ignore_above": 256
-                }
-            }
-        },
-        "errorCode": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "ewExecutionInfo": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 1024
-                }
-            }
-        },
-        "ewUsageInfo": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 1024
                 }
             }
         },
@@ -185,98 +96,19 @@
                 }
             }
         },
-        "proto": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "queryStr": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 512
-                }
-            }
-        },
-        "range": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "referer": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 512
-                }
-            }
-        },
         "reqEndTimeMSec": {
             "type": "integer",
+            "ignore_malformed": true,
             "fields": {
                 "keyword": {
                     "type": "keyword",
                     "ignore_above": 256
-                }
-            }
-        },
-        "reqHost": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "reqId": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "reqMethod": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "reqPath": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 1024
                 }
             }
         },
         "reqPort": {
             "type": "short",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "reqTimeSec": {
-            "type": "text",
+            "ignore_malformed": true,
             "fields": {
                 "keyword": {
                     "type": "keyword",
@@ -286,51 +118,7 @@
         },
         "rspContentLen": {
             "type": "long",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "rspContentType": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "securityRules": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "serverCountry": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "state": {
-            "type": "text",
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "statusCode": {
-            "type": "text",
+            "ignore_malformed": true,
             "fields": {
                 "keyword": {
                     "type": "keyword",
@@ -351,15 +139,6 @@
         "tlsOverheadTimeMSec": {
             "type": "integer",
             "ignore_malformed": true,
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "tlsVersion": {
-            "type": "text",
             "fields": {
                 "keyword": {
                     "type": "keyword",
@@ -410,15 +189,6 @@
         "version": {
             "type": "byte",
             "ignore_malformed": true,
-            "fields": {
-                "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                }
-            }
-        },
-        "xForwardedFor": {
-            "type": "text",
             "fields": {
                 "keyword": {
                     "type": "keyword",
