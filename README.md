@@ -22,6 +22,8 @@ You might need to flush DNS in your cluster to get correct DNS answer.
 
 We now also added some Elastic configuration using TF. It will create an index and set a ingest pipeline to "wash" the datastream input. We also added some mapping config but only for non-text field as Elastic will automatically convert datastream fields to text as datastream.
 
+The only thing you have to do is to create a new data view based on the ds index in the discover section and off you go. If you don't see anything being added, just double check https://<hostname>/ds/_search to check if anything is being added to the index.
+
 I created a datastream config by hand but we should also be able to automate it using the DataStream Akamai TF provider.
 <img width="1248" alt="image" src="https://user-images.githubusercontent.com/3455889/202760826-81930bdb-2129-4711-b36a-602c28c1b88a.png">
 
