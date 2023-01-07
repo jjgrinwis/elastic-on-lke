@@ -69,6 +69,7 @@
         },
         "maxAgeSec": {
             "type": "integer",
+            "ignore_malformed": true,
             "fields": {
                 "keyword": {
                     "type": "keyword",
