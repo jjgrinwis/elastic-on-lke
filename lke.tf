@@ -42,11 +42,10 @@ resource "linode_lke_cluster" "my-cluster" {
     type  = var.node_type
     count = var.pool_count
 
-    # not using the autoscaler function 
-    /* autoscaler {
+    autoscaler {
           min = 3
-          max = 10
-        } */
+          max = 5
+        }
   }
 }
 
@@ -59,9 +58,9 @@ resource "local_sensitive_file" "kubeconfig" {
 }
 
 # during testing looks like helm is already trying to create stuff but LKE is not fully finished
-# so let's wait for 120 seconds before continuing installing the software.
+# so let's wait for 180 seconds before continuing installing the software.
 # we might want to look for some other option to check if LKE if fully up and running
 resource "time_sleep" "wait_xx_seconds" {
   depends_on      = [resource.local_sensitive_file.kubeconfig]
-  create_duration = "120s"
+  create_duration = "180s"
 }
