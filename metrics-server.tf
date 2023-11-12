@@ -7,7 +7,7 @@ resource "helm_release" "metrics-server" {
   # using kubernetes-sigs as source
   repository = "https://kubernetes-sigs.github.io/metrics-server/"
   chart      = "metrics-server"
-  version    = "3.8.2"
+  version    = "3.11.0"
 
   # we need to ignore cert errors when using LKE
   values = [

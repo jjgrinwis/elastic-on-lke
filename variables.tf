@@ -9,7 +9,7 @@ variable "token" {
 variable "k8s_version" {
   type        = string
   description = "Preferred Kubernets version"
-  default     = "1.23"
+  default     = "1.27"
 }
 
 # select the region for your k8s cluster, included some validation
@@ -18,8 +18,8 @@ variable "region" {
   type        = string
   description = "LKE region"
   validation {
-    condition     = contains(["eu-central", "eu-west", "us-east"], var.region)
-    error_message = "Valid values for the k8s region: are (eu-central, eu-west, us-east)."
+    condition     = contains(["eu-central", "eu-west", "us-east", "nl-ams"], var.region)
+    error_message = "Valid values for the k8s region: are (eu-central, eu-west, us-east, nl-ams)."
   }
 }
 

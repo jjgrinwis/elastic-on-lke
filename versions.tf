@@ -5,16 +5,16 @@ terraform {
       source = "linode/linode"
     }
     kubectl = {
-      source  = "gavinbunney/kubectl"
-      version = ">= 1.13.0"
+      source  = "alekc/kubectl"
+      version = ">= 2.0.2"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = ">= 1.13"
+      version = ">= 2.0.1"
     }
     helm = {
       source  = "hashicorp/helm"
-      version = ">= 2.1.0"
+      version = ">= 2.5.0"
     }
     akamai = {
       source = "akamai/akamai"

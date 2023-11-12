@@ -66,7 +66,6 @@ resource "akamai_dns_record" "es-hostname" {
   zone       = regex("([\\w-]*)\\.([\\w-\\.]*)", var.es_hostname)[1]
   name       = var.es_hostname
   recordtype = "A"
-  active     = true
   ttl        = 30
   target     = [local.ingress_ip]
 }
@@ -76,7 +75,6 @@ resource "akamai_dns_record" "kibana-hostname" {
   zone       = regex("([\\w-]*)\\.([\\w-\\.]*)", var.kibana_hostname)[1]
   name       = var.kibana_hostname
   recordtype = "A"
-  active     = true
   ttl        = 30
   target     = [local.ingress_ip]
 }
